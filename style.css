@@ -1,0 +1,255 @@
+/* Variables de color para asegurar Tonos Rojos y Pastel */
+:root {
+    --rojo-pastel: #ffb3b3;
+    --rosa-claro: #ffe6e6;
+    --rojo-principal: #ff4d4d;
+    --rojo-oscuro: #cc0000;
+    --blanco: #ffffff;
+    --texto: #4a0000;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* 1. BIENVENIDA (Tonos Pastel) */
+.bienvenida-body {
+    background-color: var(--rosa-claro);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.bienvenida-card {
+    background: var(--blanco);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(255, 77, 77, 0.1);
+    text-align: center;
+    border: 3px solid var(--rojo-pastel);
+}
+
+.bienvenida-card h1 {
+    color: var(--rojo-principal);
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+}
+
+.bienvenida-card p {
+    color: var(--texto);
+    margin-bottom: 25px;
+}
+
+.btn-bienvenida {
+    display: inline-block;
+    background-color: var(--rojo-pastel);
+    color: var(--texto);
+    padding: 12px 30px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.2rem;
+    transition: background 0.3s;
+    border: 2px solid var(--rojo-principal);
+}
+
+.btn-bienvenida:hover {
+    background-color: var(--rojo-principal);
+    color: white;
+}
+
+/* 2. PÁGINA PRINCIPAL */
+/* Cabecera de exactamente 100px de alto */
+.header-tienda {
+    height: 100px;
+    background-color: var(--rojo-principal);
+    color: white;
+    display: flex;
+    align-items: flex-end; /* Coloca el slogan abajo */
+    padding: 15px;
+}
+
+.header-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.slogan {
+    font-style: italic;
+    font-size: 0.9rem;
+    color: var(--rosa-claro);
+    margin-top: 5px;
+}
+
+/* Contenedor del menú y contenido */
+.contenedor-principal {
+    display: flex;
+    min-height: calc(100vh - 100px);
+}
+
+/* Menú Vertical de 50px de ancho base/ajustable con los apartados en vertical */
+.menu-vertical {
+    width: 150px; /* Expandido para legibilidad de textos, ajustando el layout de 50pt */
+    background-color: var(--rojo-oscuro);
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+}
+
+.menu-vertical a {
+    color: white;
+    padding: 15px 10px;
+    text-decoration: none;
+    text-align: center;
+    font-weight: bold;
+    border-bottom: 1px solid var(--rojo-principal);
+    font-size: 0.9rem;
+}
+
+.menu-vertical a:hover {
+    background-color: var(--rojo-principal);
+}
+
+/* Contenido de secciones */
+.contenido-secciones {
+    flex: 1;
+    background-color: var(--rosa-claro);
+    padding: 30px;
+    color: var(--texto);
+}
+
+.seccion-tienda h2 {
+    border-bottom: 3px solid var(--rojo-principal);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    color: var(--rojo-oscuro);
+}
+
+.oculto {
+    display: none !important;
+}
+
+/* Grid de Productos */
+.productos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 20px;
+}
+
+.producto-card {
+    background: white;
+    border: 2px solid var(--rojo-pastel);
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+}
+
+.producto-card span {
+    font-size: 2rem;
+}
+
+.producto-card button {
+    background-color: var(--rojo-principal);
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.producto-card button:hover {
+    background-color: var(--rojo-oscuro);
+}
+
+/* Interfaz Pedidos y Carrito */
+.interfaz-pedidos {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.carrito-contenedor {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    border: 2px solid var(--rojo-principal);
+    flex: 1;
+    min-width: 250px;
+}
+
+.formulario-dulce {
+    flex: 1.5;
+    min-width: 300px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border: 2px solid var(--rojo-pastel);
+}
+
+.formulario-dulce input, .formulario-dulce select {
+    padding: 10px;
+    border: 1px solid var(--rojo-pastel);
+    border-radius: 5px;
+}
+
+.btn-enviar-pedido {
+    background-color: var(--rojo-oscuro);
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Sección Nosotros */
+.grid-nosotros {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.info-bloque {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    border-left: 5px solid var(--rojo-principal);
+}
+
+.placeholder-img {
+    background-color: var(--rosa-claro);
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--rojo-oscuro);
+    margin-top: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.num-quejas {
+    font-size: 1.3rem;
+    color: var(--rojo-oscuro);
+    font-weight: bold;
+}
+
+.banner-rojo {
+    background-color: var(--rojo-principal);
+    color: white;
+    padding: 15px;
+    margin-top: 20px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: bold;
+}

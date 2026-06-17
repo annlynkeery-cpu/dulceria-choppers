@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dulcería Chooper's - Tienda</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+    <header class="header-tienda">
+        <div class="header-content">
+            <h2>Dulcería Chooper's</h2>
+            <p class="slogan">"Tu vida más dulce en cada bocado"</p>
+        </div>
+    </header>
+
+    <div class="contenedor-principal">
+        <nav class="menu-vertical">
+            <a href="#inicio" onclick="mostrarSeccion('inicio')">Principal</a>
+            <a href="#nosotros" onclick="mostrarSeccion('nosotros')">Nosotros</a>
+            <a href="#productos" onclick="mostrarSeccion('productos')">Productos</a>
+            <a href="#pedidos" onclick="mostrarSeccion('pedidos')">Pedidos</a>
+            <a href="#ofertas" onclick="mostrarSeccion('ofertas')">Ofertas</a>
+        </nav>
+
+        <main class="contenido-secciones">
+            
+            <section id="sec-inicio" class="seccion-tienda">
+                <h2>Bienvenidos a nuestra tienda</h2>
+                <p>Usa el menú de la izquierda para navegar por nuestros dulces productos y preparar tu orden perfecta.</p>
+                <div class="banner-rojo">¡Grandes descuentos en chocolates esta semana!</div>
+            </section>
+
+            <section id="sec-nosotros" class="seccion-tienda oculto">
+                <h2>Sobre Nosotros</h2>
+                <div class="grid-nosotros">
+                    <div class="info-bloque">
+                        <h3>Nuestra Ubicación</h3>
+                        <p>📍 Av. Principal de los Dulces, No. 123, Colonia Centro.</p>
+                        <div class="placeholder-img">🗺️ [Mapa de Ubicación]</div>
+                    </div>
+                    <div class="info-bloque">
+                        <h3>El Local</h3>
+                        <div class="placeholder-img">🏪 [Foto del Local en Tonos Rojos]</div>
+                    </div>
+                    <div class="info-bloque">
+                        <h3>Nuestro Equipo</h3>
+                        <p>Trabajamos con amor para endulzar tus días.</p>
+                        <div class="placeholder-img">👥 [Foto de los Empleados]</div>
+                    </div>
+                    <div class="info-bloque quejas">
+                        <h3>Atención al Cliente</h3>
+                        <p>Número de Quejas y Sugerencias:</p>
+                        <span class="num-quejas">☎️ 01-800-CHOOPERS</span>
+                    </div>
+                </div>
+            </section>
+
+            <section id="sec-productos" class="seccion-tienda oculto">
+                <h2>Nuestros Productos</h2>
+                <div class="productos-grid">
+                    <div class="producto-card"><span>🍬</span> <h3>Dulces Surtidos</h3><p>$25.00</p><button onclick="agregarAlCarrito('Dulces Surtidos', 25.00)">Agregar</button></div>
+                    <div class="producto-card"><span>🧸</span> <h3>Gomitas de Oso</h3><p>$18.50</p><button onclick="agregarAlCarrito('Gomitas de Oso', 18.50)">Agregar</button></div>
+                    <div class="producto-card"><span>🍒</span> <h3>Caramelos Cereza</h3><p>$12.00</p><button onclick="agregarAlCarrito('Caramelos Cereza', 12.00)">Agregar</button></div>
+                    <div class="producto-card"><span>🍭</span> <h3>Paletas Manzana</h3><p>$8.00</p><button onclick="agregarAlCarrito('Paletas Manzana', 8.00)">Agregar</button></div>
+                    <div class="producto-card"><span>🔥</span> <h3>Cheetos Flamin</h3><p>$22.00</p><button onclick="agregarAlCarrito('Cheetos Flamin', 22.00)">Agregar</button></div>
+                    <div class="producto-card"><span>🥔</span> <h3>Papas con Sal</h3><p>$20.00</p><button onclick="agregarAlCarrito('Papas con Sal', 20.00)">Agregar</button></div>
+                    <div class="producto-card"><span>🔴</span> <h3>Lunetas</h3><p>$15.00</p><button onclick="agregarAlCarrito('Lunetas', 15.00)">Agregar</button></div>
+                    <div class="producto-card"><span>🍫</span> <h3>Chocolates</h3><p>$35.00</p><button onclick="agregarAlCarrito('Chocolates', 35.00)">Agregar</button></div>
+                </div>
+            </section>
+
+            <section id="sec-pedidos" class="seccion-tienda oculto">
+                <h2>Procesar tu Pedido</h2>
+                <div class="interfaz-pedidos">
+                    <div class="carrito-contenedor">
+                        <h3>🛒 Tu Orden</h3>
+                        <ul id="lista-carrito">
+                            <p class="carrito-vacio">El carrito está vacío.</p>
+                        </ul>
+                        <p class="total-orden">Total: $<span id="total-precio">0.00</span></p>
+                    </div>
+
+                    <form id="form-pedido" class="formulario-dulce">
+                        <label>Nombre Completo:</label>
+                        <input type="text" id="nombre" required placeholder="Tu nombre">
+
+                        <label>Fecha del Pedido:</label>
+                        <input type="date" id="fecha" required>
+
+                        <label>Dirección de Entrega:</label>
+                        <input type="text" id="direccion" required placeholder="Calle, Número, Colonia">
+
+                        <label>Forma de Pago:</label>
+                        <select id="forma_pago">
+                            <option value="Efectivo">Efectivo contra entrega</option>
+                            <option value="Tarjeta">Tarjeta de Crédito/Débito</option>
+                            <option value="Transferencia">Transferencia Bancaria</option>
+                        </select>
+
+                        <input type="hidden" id="pedido_detalles">
+
+                        <button type="submit" class="btn-enviar-pedido">Enviar Pedido a Supabase</button>
+                    </form>
+                </div>
+            </section>
+
+            <section id="sec-ofertas" class="seccion-tienda oculto">
+                <h2>Ofertas Especiales 🍓</h2>
+                <p>¡Lleva 3 bolsas de Gomitas de Oso y paga solo 2! Válido hasta agotar existencias.</p>
+            </section>
+
+        </main>
+    </div>
+
+    <script>
+        // Cambiar entre secciones del menú vertical
+        function mostrarSeccion(idSeccion) {
+            document.querySelectorAll('.seccion-tienda').forEach(sec => sec.classList.add('oculto'));
+            document.getElementById('sec-' + idSeccion).classList.remove('oculto');
+        }
+
+        // Lógica del Carrito de Compras
+        let carrito = [];
+        let total = 0;
+
+        function agregarAlCarrito(nombre, precio) {
+            carrito.push({ nombre, precio });
+            total += precio;
+            actualizarInterfazCarrito();
+        }
+
+        function actualizarInterfazCarrito() {
+            const lista = document.getElementById('lista-carrito');
+            const totalTxt = document.getElementById('total-precio');
+            const detallesInput = document.getElementById('pedido_detalles');
+            
+            if(carrito.length === 0) {
+                lista.innerHTML = '<p class="carrito-vacio">El carrito está vacío.</p>';
+            } else {
+                lista.innerHTML = '';
+                carrito.forEach((item, index) => {
+                    lista.innerHTML += `<li>${item.nombre} - $${item.precio.toFixed(2)}</li>`;
+                });
+            }
+            totalTxt.innerText = total.toFixed(2);
+            detallesInput.value = JSON.stringify(carrito); // Guardamos la orden en formato texto para la base de datos
+        }
+
+        // Coloca hoy por defecto en el input date
+        document.getElementById('fecha').valueAsDate = new Date();
+
+        // -------------------------------------------------------------
+        // CONEXIÓN CON SUPABASE
+        // REEMPLAZA ESTOS VALORES con los que te dé Supabase al crear tu proyecto:
+        const SUPABASE_URL = "https://TU_PROYECTO.supabase.co";
+        const SUPABASE_KEY = "TU_ANON_KEY";
+        const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+        // Envío del Formulario a la Base de Datos
+        document.getElementById('form-pedido').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            if(carrito.length === 0) {
+                alert("Por favor, agrega productos al carrito antes de hacer el pedido.");
+                return;
+            }
+
+            const datosPedido = {
+                nombre_cliente: document.getElementById('nombre').value,
+                fecha: document.getElementById('fecha').value,
+                direccion: document.getElementById('direccion').value,
+                forma_pago: document.getElementById('forma_pago').value,
+                pedido_detalles: document.getElementById('pedido_detalles').value,
+                total: total
+            };
+
+            // Insertamos los datos en la tabla de Supabase
+            const { data, error } = await supabase
+                .from('pedidos')
+                .insert([datosPedido]);
+
+            if (error) {
+                console.error("Error:", error);
+                alert("Hubo un error al guardar tu pedido en Supabase.");
+            } else {
+                alert("¡Pedido realizado con éxito! Guardado en la base de datos.");
+                // Limpiar carrito y formulario
+                carrito = [];
+                total = 0;
+                actualizarInterfazCarrito();
+                document.getElementById('form-pedido').reset();
+                document.getElementById('fecha').valueAsDate = new Date();
+            }
+        });
+    </script>
+</body>
+</html>
